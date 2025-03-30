@@ -1,28 +1,36 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Homepage from "./components/HomePage";
-import RegisterComponent from "./components/RegisterComponent";
-import LoginComponent from "./components/LoginComponent";
-import UserComponent from "./components/UserComponent";
-import AdminComponent from "./components/AdminComponent";
-import HeaderComponent from "./components/HeaderComponent";
-import FooterComponent from "./components/FooterComponent";
-import "./App.css";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import ListUserComponent from './components/user/ListUserComponent'
+import HeaderComponent from './components/user/HeaderComponent'
+import FooterComponent from './components/user/FooterComponent'
+import { BrowserRouter,Routes,Route } from 'react-router-dom'  
+import UserComponent from './components/user/UserComponent'
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
+    <>
     <BrowserRouter>
-      <HeaderComponent />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/register" element={<RegisterComponent />} />
-        <Route path="/login" element={<LoginComponent />} />
-        <Route path="/profile" element={<UserComponent />} />
-        <Route path="/admin" element={<AdminComponent />} />
-      </Routes>
-      <FooterComponent />
+       <HeaderComponent />
+       <Routes>
+          {/* // http://localhost:3000 */}
+          <Route path='/' element={<ListUserComponent />} ></Route>
+          {/* // http://localhost:3000/users */}
+          <Route path="/users" element={<ListUserComponent />} ></Route>
+          {/* // http://localhost:3000/add-user */}
+          <Route path="/add-user" element={<UserComponent />} ></Route>
+          {/* // http://localhost:3000/edit-user/1 */}
+          <Route path="/edit-user/:id" element={<UserComponent />} ></Route>
+  
+       </Routes>
+       <FooterComponent />
+       {/* <ListUserComponent /> */}
     </BrowserRouter>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App
